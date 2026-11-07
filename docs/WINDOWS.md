@@ -10,6 +10,7 @@ PowerShell/CMD service implementation is not included.
 In **PowerShell**, inspect existing distributions:
 
 ```powershell
+wsl --version
 wsl --status
 wsl --list --verbose
 ```
@@ -21,8 +22,15 @@ wsl --install -d Ubuntu
 ```
 
 Complete any required restart, launch Ubuntu, and create your normal Linux user.
-If WSL needs updating, run `wsl --update` from PowerShell. Confirm the chosen
-Ubuntu distribution shows `VERSION 2` in `wsl --list --verbose`. Use its actual
+Check the **WSL release** shown by `wsl --version`: systemd requires
+[WSL 0.67.6 or newer](https://learn.microsoft.com/en-us/windows/wsl/systemd), and
+Docker Desktop requires [WSL 2.1.5 or newer](https://docs.docker.com/desktop/features/wsl/).
+Use a current WSL release. If the release is too old, or `wsl --version` is
+unrecognized, run `wsl --update` from PowerShell and recheck before continuing.
+
+Separately, confirm the chosen Ubuntu distribution shows `VERSION 2` in
+`wsl --list --verbose`. This column identifies the distribution's WSL mode,
+not the installed WSL release. Use its actual
 distribution name in subsequent commands; `Ubuntu` is the example name here.
 Preserve an existing distro and its data instead of reinstalling it.
 

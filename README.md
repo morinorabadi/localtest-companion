@@ -149,8 +149,11 @@ localtest config myapp
 
 `start` restarts a running profile and enables it at login. `stop` disables its
 app service and pauses sync, preserving local data. Disable the independent
-bridge separately with `localtest bridge disable myapp`. For startup before
-login after a reboot, optionally run `sudo loginctl enable-linger "$USER"`.
+bridge separately with `localtest bridge disable myapp`. On native Ubuntu, for
+startup before login after a reboot, optionally run
+`sudo loginctl enable-linger "$USER"`. On Windows, follow the
+[WSL session and reboot guidance](docs/WINDOWS.md#sessions-sleep-and-reboot);
+linger does not start WSL or keep its virtual machine alive.
 
 Source sync is **one-way replica**: Coder is authoritative. Editing the Ubuntu
 mirror can lose changes. Git metadata, `.env*` (except examples), dependencies,
