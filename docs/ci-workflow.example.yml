@@ -1,0 +1,31 @@
+name: Test companion
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.10', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m unittest discover -s companion -v
+      - run: python -m compileall -q companion scripts examples
+      - run: bash -n companion/install.sh companion/update.sh scripts/install-broker.sh
+  mutagen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: bash companion/install.sh --prefix "$RUNNER_TEMP/localtest"
+      - run: python -m unittest discover -s companion -v
+        env:
+          LOCALTEST_TEST_MUTAGEN: ${{ runner.temp }}/localtest/share/localtest/bin/mutagen
