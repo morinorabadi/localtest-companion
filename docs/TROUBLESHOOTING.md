@@ -66,7 +66,8 @@ is deliberately not replayed. Cancel only a still-pending request with
 
 ## systemd user services are unavailable
 
-Use a normal Ubuntu desktop/login session with a working user manager. A minimal
+Use an Ubuntu login session with a working user manager. On Windows, follow the
+[WSL 2 systemd setup](WINDOWS.md#2-check-systemd-inside-ubuntu). A minimal
 container or shell without systemd is not an Ubuntu runtime target for this tool.
 Optional `sudo loginctl enable-linger "$USER"` enables startup before login;
-it does not install systemd or repair an unsupported environment.
+it does not install systemd, start WSL at Windows login, or keep WSL alive.

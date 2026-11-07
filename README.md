@@ -1,7 +1,12 @@
-# Ubuntu localtest companion
+# Localtest companion
 
-Edit in a Coder workspace. Run the app on your Ubuntu machine. Let your coding
-agent check its logs, health, and tests through an outbound command bridge.
+Edit in a Coder workspace. Run the app locally on Ubuntu, including Ubuntu in
+WSL 2 on Windows. Let your coding agent check its logs, health, and tests through
+an outbound command bridge.
+
+**Using Windows?** Start with the [Windows / WSL 2 guide](docs/WINDOWS.md), then
+run the Ubuntu commands below inside that WSL distribution. The companion uses
+Linux systemd services; it does not install as a native Windows service.
 
 Localtest uses Mutagen for one-way source sync and systemd user services to
 supervise each local app. It supports Node/Next/Vite projects automatically and
@@ -14,7 +19,7 @@ without confusing Coder's localhost with Ubuntu's.
 
 ## What runs where
 
-| Coder workspace | Ubuntu machine |
+| Coder workspace | Ubuntu or Ubuntu in Windows WSL 2 |
 | --- | --- |
 | Authoritative source checkout and coding agent | Synced source mirror and app runtimes |
 | Python command broker and private request queue | Local environment files, databases, and user services |
@@ -22,6 +27,8 @@ without confusing Coder's localhost with Ubuntu's.
 
 Each coworker uses their own Coder access, Ubuntu profile, environment, and data.
 Sharing this repository does not share your app's source or credentials.
+On Windows, the Ubuntu profile, credentials, and app live inside WSL; the browser
+can remain a Windows application.
 
 ## 1. Prepare Coder
 
@@ -39,6 +46,9 @@ The broker needs Python 3.10+ on Linux. It starts on demand through SSH; it does
 not open a network listener. Keep this checkout at its installed path.
 
 ## 2. Prepare Ubuntu
+
+Windows users: complete [WSL prerequisites](docs/WINDOWS.md) first. All Ubuntu
+commands in this repository also mean **inside Ubuntu in WSL 2** on Windows.
 
 Requirements: Python 3.10+, Git, OpenSSH client, working systemd user services,
 and the [Coder CLI](https://coder.com/docs/install). Install your application's
@@ -153,6 +163,7 @@ save, or a successful Coder-side test does not prove the Ubuntu app is healthy.
 ## Further documentation
 
 - [Agent setup prompt and completion checklist](docs/AGENT_SETUP.md)
+- [Windows / WSL 2 setup and lifecycle](docs/WINDOWS.md)
 - [Agent workflow and verification rules](companion/AGENT_GUIDE.md)
 - [Project commands, environment files, Docker, and updates](docs/PROJECTS.md)
 - [Troubleshooting](docs/TROUBLESHOOTING.md)

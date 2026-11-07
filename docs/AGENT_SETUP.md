@@ -2,12 +2,13 @@
 
 This works with agents that can read files and run terminal commands. It does not
 require a particular model, editor, or app connector. The agent can work in Coder
-or on Ubuntu, but one machine cannot be assumed to have shell access to the other.
+or on Ubuntu (including WSL 2 on Windows), but one machine cannot be assumed to
+have shell access to the other. Windows setup starts with `docs/WINDOWS.md`.
 
 Copy this prompt and fill in any details you know:
 
 ```text
-Set up the Ubuntu localtest companion for my project:
+Set up the localtest companion for my project:
 https://github.com/morinorabadi/localtest-companion
 
 Clone or inspect the repository, then read AGENTS.md, README.md,
@@ -19,8 +20,13 @@ My Coder workspace: [workspace name, or discover/ask]
 My app's absolute path inside Coder: [path, or discover/ask]
 My preferred local profile name and port: [name/port, or choose unused values]
 My app's startup/test commands: [commands, or inspect the app's documentation]
+My local operating system: [Ubuntu / Windows, or discover/ask]
 
-First identify whether you are in Coder or on Ubuntu. Inspect existing profiles
+First identify whether you are in Coder, native Ubuntu, Windows PowerShell,
+or Ubuntu in WSL 2. On Windows, read docs/WINDOWS.md, prepare Ubuntu in WSL 2,
+and verify systemd user services before installing the companion. Use Linux
+tools/paths inside WSL and verify browser access from Windows as a separate check.
+Inspect existing profiles
 and runtimes. Keep the tool checkout separate from the app source and use a new
 or empty Ubuntu mirror. Keep secrets and local data outside synced sources.
 
@@ -54,6 +60,8 @@ The agent should establish all of the following before reporting full setup:
 - `localtest-remote status NAME` is online and lists the intended actions.
 - A named health/test action completes and returns its actual result to Coder.
 - Future agents can find `companion/AGENT_GUIDE.md` from the app's instructions.
+- On Windows, Ubuntu runs in WSL 2, its systemd user manager works, the bridge
+  returns checks from that distro, and the local URL also opens in Windows.
 
 The included smoke example proves the transport with a small local server.
 Your real application's readiness and test results are separate checks.

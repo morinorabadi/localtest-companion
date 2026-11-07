@@ -5,6 +5,12 @@ Ubuntu holds a one-way mirror, app processes, private environment, and local
 database/object-store state. Each profile registers its own source and mirror;
 other directories or external Git worktrees are not automatically synchronized.
 
+On Windows, the Ubuntu runtime is inside WSL 2. Read `docs/WINDOWS.md` in the
+repository before setup. Run the Linux companion, Coder CLI, SSH, and application
+runtimes in that distro, with working systemd user services. Keep mirrors under
+the Linux home directory. Windows browser reachability is a separate check from
+the WSL HTTP probe, and WSL session/boot behavior differs from native Ubuntu.
+
 ## Discover the user's registration
 
 On Ubuntu, `localtest status`, `localtest config NAME`, and `localtest sync-status

@@ -6,7 +6,12 @@ For a new user, follow `docs/AGENT_SETUP.md`; for implementation changes, read
 
 ## Complete the user's setup
 
-- Determine whether you are running in Coder or on Ubuntu. Inspect the actual
+- Determine whether you are running in Coder, native Ubuntu, Windows PowerShell,
+  or Ubuntu in WSL 2. For Windows, read `docs/WINDOWS.md` and set up the local
+  runtime inside WSL with working systemd user services. Keep Linux tools and
+  mirrors in the Linux filesystem. Verify Windows browser access separately;
+  never claim a WSL test ran unless you have actual WSL output.
+- Inspect the actual
   workspace, app path, SSH alias, runtimes, and existing localtest profiles.
   Never treat the example `dev` workspace or `myapp` path as confirmed values.
 - Continue work that is possible on your current machine. If authentication or

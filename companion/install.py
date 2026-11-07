@@ -15,7 +15,7 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--prefix", type=Path, default=Path.home() / ".local")
 args = parser.parse_args()
 if platform.system() != "Linux":
-    raise SystemExit("This companion installer currently supports Linux (systemd).")
+    raise SystemExit("Run this installer in Linux with systemd. On Windows, use Ubuntu in WSL 2; see docs/WINDOWS.md.")
 arch = {"x86_64": "amd64", "aarch64": "arm64"}.get(platform.machine())
 if not arch:
     raise SystemExit("Supported architectures: x86_64 and aarch64.")
